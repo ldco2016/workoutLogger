@@ -5,7 +5,9 @@ var AppAPI = require('./utils/AppAPI');
 var StartData = require('./StartData');
 
 if(localStorage.getItem('workouts') == null){
-  StartData.init();
+  //StartData.init();
 }
+
+AppAPI.getWorkOuts();
 
 ReactDOM.render(<App />, document.getElementById('main'));

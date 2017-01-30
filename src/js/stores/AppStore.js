@@ -25,6 +25,9 @@ var AppStore = assign({}, EventEmitter.prototype, {
   addWorkOut: function(workout){
     _workouts.push(workout);
   },
+  receiveWorkOuts: function(workouts){
+    _workouts = workouts;
+  },
   addChangeListener: function(callback){
     this.on('change', callback);
   },
@@ -45,6 +48,11 @@ AppDispatcher.register(function(payload){
     case AppConstants.ADD_WORKOUT:
       AppStore.addWorkOut(action.workout);
       AppAPI.addWorkOut(action.workout);
+      AppStore.emit(CHANGE_EVENT);
+      break;
+
+    case AppConstants.RECEIVE_WORKOUTS:
+      AppStore.receiveWorkOuts(action.workouts);
       AppStore.emit(CHANGE_EVENT);
       break;
   }
