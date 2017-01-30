@@ -11,15 +11,22 @@ function getAppState(){
   }
 }
 
+// React component adding event listener to the DOM when it first mounts and removing event listener when
+// component unmounts from the DOM, so irrelevant processing does not occur.
+// Understanding how and when these hooks fire is key to building stable components and will enable
+// you to control the rendering process (improving performance).
 var App = React.createClass({
+  // Initialization stage of React lifecycle
   getInitialState: function(){
     return getAppState();
   },
 
+  // when the component is added to the DOM - Initialization stage of React lifecycle
   componentDidMount: function(){
     AppStore.addChangeListener(this._onChange);
   },
 
+  // when the component is removed from the DOM - Destruction stage of React lifecycle
   componentUnmount: function(){
     AppStore.removeChangeListener(this._onChange);
   },

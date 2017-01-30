@@ -14,8 +14,13 @@ var Workout = React.createClass({
     return (
         <li className="list-group-item">
           {this.props.workout.type} - {this.props.workout.minutes} Minutes {miles}
+            <a href="#" onClick={this.onDelete.bind(this, this.props.workout.id)} className="delete">X</a>
         </li>
     );
+  },
+
+  onDelete: function(i, j){
+    AppActions.removeWorkOut(i);
   }
 
 });
